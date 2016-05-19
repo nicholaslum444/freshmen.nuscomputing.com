@@ -33,7 +33,8 @@
     
     "production": {
       "locals": {
-        "baseUrl": "http://freshmen.nuscomputing.com/"
+        "baseUrl": "http://freshmen.nuscomputing.com/", 
+        "analytics": true
       }, 
       
       "output": "./public/",
