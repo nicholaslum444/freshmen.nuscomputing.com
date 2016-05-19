@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>RAG &amp; FLAG | FOP 2016 | NUS Computing</title>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700%7CLato:400,900">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200&amp;text=2016">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+		<link rel="stylesheet" href="http://freshmen.nuscomputing.com/css/app.css">
+		<link rel="icon" href="http://freshmen.nuscomputing.com/favicon.ico"><!-- 
+		If you're reading the source code, I'd just like to let you know that 
+		 book horse is best horse       ;jjjt                      :;,.              
+		                                  jt;;tj:                  .jt;;ijjt           
+		                   .ijGDEEEEEDGLjiji;;;jj.                 jj;;;;;;jj;         
+		             .jKWWKKEEEEEEEEEEKEKEji;;;;tjGKDLi,.         .jj;;;;;;;;jj:       
+		           ;KWWEEEEEEEEEEEEEEEEKEEji;it;;jjGKKKKWWWWWWKKEEGjt;;;;;;;;;iji      
+		         LWWEEEEEEEEEEEEEEEKEEWEEEji;;;;;;tjEDDDDDfffLEEEWDji;;;;;;;t;;;jj     
+		       ,WWEEEEEEEEEEEEEEEEWEEKEEEEji;;;;;;tjDDDDDffffEEEEWWjt;;;;;;;;j;;;jt    
+		      LWKEEEEEEEEEEEEEEEEKEEKEEEEEjt;;;;jiDDDDDfffffEEEEEKWLj;;;;;;;;ij;;;j;   
+		     GWKEEEEEEEEEEEEEEEEKEEEKEEEEEjj;;;;tDDDDDfffffDEEEEKEWWj;;;;;;;;;j;;;tj   
+		    tWKEEEEEEEEEEEEEEEEKEEEWEEEEEEjj;;;DDDDDDffffffEEEEEKEEWWi;;;;;;;;tt;;;jj  
+		   .KWEEEEEEEEWEEEEEEEEEEEEEEEEEEEjj;;fDDDDDLffffffEEEEEEKEEKWE;;;;;;;;t;;;jj  
+		   KKEEEEEEEKWWEEEEEEEWEEEKEEEEEEEGjtGDDDDDDfffffffEEEEEEEEEEEKKWL,;;;;i;;;tj: 
+		   WWEEEEEEEWWWEEEEEEEKEEEKEEEEEEEEjtDDDDDDLfffffffEEEEEEEKEEEEEKWWWLi;,;;;ij, 
+		  DWEEEEEEEWWWWEEEEEEEEEEEEEEEEEEEEjDDDDDDDjfffffffjEEEEEEEEKEEEEEEEEKKWWWWWWE 
+		  KWEEEEEEEWKWWEEEEEEEEEEKEEEEEEEEEDDDDDDDGfffffffffLEEEEEEEEEEEEEEEEEEEEKWWf  
+		 ;WKEEEEEEKWjWWEEEEEEEKEEWEEEEEEEEEDDDDDDDffffffffffffEEEEEEEEKEEEEEEKWWWf,ji  
+		 DWEEEEEEEWW,KWEEEEEEEWEEKEEEEEEEEDDDDDDDDjjjjjjffffffLEEEEEKKKWWWWWWWW,;;jj   
+		 KWEEEEEEEWW,;WKEEEEKKKWWKKKKWWKKKKKEEEEEEEEEEEEEEEDDDWDjKWWWKEWWWE.:E;;;#t    
+		 KWEEEEEEEWW,,WWWWKKGfj#KfttG#Kt;;;;;;;;;;;;;;;;;;;;;,K WW##     .KKtiWDL,     
+		 WWEEEEEEEWK,;;;;;t#L#     KWWKD#W,;;;;;;;;;;;;;;;;;;j.WW##W        KK,;tj     
+		.WWEEEKWWKGj;;Gt;;;;#     KWW    ,#t;;;;;;;;;;;;;;;;;DGK####t        EE;;j,    
+		.WWKWWE;   tj;;iK#KEL    LKKK     .#G;;;;;;;;;;;;;;;;EEE#####i       :D,;jt    
+		.WD:        :jf;;;;L     KEEE,      GD;;;;;;;;;;;;;;;GDK#####LGE,    KDj;jj    
+		              :DWWW#     DDDW#L      #f;;;;;;;;;;;;;;jDE####:   D#####DEitj    
+		                 jj;     EDDWKLDW;    #,;;;;;;;;;;;;;,KD##############jLttfG.  
+		                 tj;:    GDDE    E#####G;;;;;;;;;;;;;;#DW############KjEKjj    
+		                  jj;     EDD###########,;;;;;;;;;;;;;fiDD###########,,;;jj    
+		                  ij,:    .jfj##########G;;;;;;;;;;;;;,WLDD#########DG;;;j,    
+		                  fij,     .f,,L#########;;;;;;tjjt;;;;,  DDDDKWKEDDi;;;jt     
+		                    WEL      ;,,E########;;;;i;;;;;;;;;;t   jDDDDDj;;;;tj      
+		                   : tGL.      fDDDDDEEDD,;;;;;;;;;;;i;;;;;;;;;;;;;;;;ij:      
+		                      jj;;       iDDDDDDf,;;;;;;;;;;;j;;;;;;;;;;;;;;;tj.       
+		                       .jj;;;.        :;;;;;;ti;;;;;;;;j;;;;;;;;;;;;jt         
+		                         tji;;;;;;;;;;;;;;;;;;;;;;;;;;j;;;;;;;;;;;jj:          
+		                           ,jj;;;;;;;;;;;;;;;j;;;;;;jj;;;;;;;;;ijj.            
+		                             ,jjt;;;;;;;;;;;;;ijjjt;;;;;;;;;;jjfKK             
+		                                 :ijjt;;;;;;;;;;;;;;;;;itjjj;WKEWK             
+		                                     ijjjjjjjjttjjjjjjjt;;;;iWEEKW             
+		                                     tj;;;;;;;;;;;;;;;,W,;;,WWEEEWi            
+		                                     jt;;;;;;;;;;;;;;;jWWEjWWEEEEWK            
+		                                     j;;;;;;;;;;;;;;;;WWEEEEEEEKEEWL -->
+	</head>
+	<body class="event">
+		<nav class="global"><a href="http://freshmen.nuscomputing.com/" class="logo">
+				<h1><span class="word word-f">F<span class="letters">reshmen </span></span><span class="word word-o">O<span class="letters">rientation </span></span><span class="word word-p">P<span class="letters">rojects </span></span><span class="year">2016</span></h1></a>
+			<button class="btn menu-btn"><i aria-hidden="true" class="fa fa-bars"></i><span class="sr-only">Open Menu</span></button>
+			<button class="btn show-menu"><span class="label">Show Menu</span><i aria-hidden="true" class="fa fa-chevron-right"></i></button>
+			<div class="full-only">
+				<ul class="nav">
+					<li><a href="http://freshmen.nuscomputing.com/fsc" class="btn btn-white"><abbr title="Freshmen Social Camp">FSC</abbr></a></li>
+					<li><a href="http://freshmen.nuscomputing.com/fow" class="btn btn-white"><abbr title="Freshmen Orientation Week">FOW</abbr></a></li>
+					<li><a href="http://freshmen.nuscomputing.com/rag-flag" class="btn btn-white"><span>RAG <br>& FLAG</span></a></li>
+					<li><a href="http://freshmen.nuscomputing.com/bash" class="btn btn-white"><span>BASH</span></a></li>
+					<li><a href="http://tiny.cc/FOP2016" target="_blank" class="btn btn-primary signup"><span>Sign Up Now</span></a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="rag-flag hero">
+			<div class="heading">
+				<p class="aspect"> <span>Bond</span></p>
+				<h1 class="big">
+					 
+					RAG 
+				</h1>
+				<p class="date">May-August</p>
+			</div>
+			<div class="description"> 
+				<p>
+					RAG is one of the biggest freshmen orientation events held by NUSSU, providing a 
+					stage to showcase the creativity and talent of students from individual faculties. 
+					This is our way of showing appreciation to our sponsors and the public who have 
+					donated generously to us. Raggers, as we call ourselves, consists of floaters 
+					who work on incredible float designs, dancers who stage jaw-dropping performances, 
+					make-up artists who create our image and costume designers who make us shine. 
+				</p>
+				<p>
+					We raggers are a family; freshmen to alumni, we’re constantly growing. Raggers form 
+					strong friendships and unforgettable experiences that last throughout their 
+					undergraduate years. Be a part of our family today!
+				</p>
+			</div>
+		</div>
+		<div class="flag hero">
+			<div class="heading">
+				<p class="aspect"><span>Volunteer</span></p>
+				<h1 class="big">FLAG</h1>
+				<p class="date">August</p>
+			</div>
+			<div class="description">
+				<p>
+					Other than the exciting preparations for RAG day, there will also be a chance for 
+					you to give back to the society by joining our FLAG events. We will be going 
+					down to our beneficiary’s, MINDSville@Napiri for a fulfilling day of 
+					interaction with their residents through fun activities. On top of that, 
+					join us on our quest to give back to society by raising funds for 
+					MINDSville@Napiri on FLAG day, which will be happening on the 2nd of August!
+				</p>
+			</div>
+			<div class="and">&</div>
+		</div>
+		<figure class="testimonial">
+			<blockquote>
+				RAG is an amazing opportunity to try something different, to learn something new. 
+				You can learn new moves with dance, or let your creativity run free with float 
+				and costumes. You don’t even have to have prior experience, just come down and 
+				you’ll be taught everything you need to know. 
+			</blockquote>
+			<figcaption>Matt C., Year 1 CS student</figcaption>
+		</figure>
+		<section class="gallery">
+			<figure>
+				<div style="background-image:url(http://freshmen.nuscomputing.com/img/rag/rag4.jpg)" class="img"></div>
+				<div class="caption right">
+					<figcaption>
+						At Rag, we make dreams come true. If you have ever dreamt about being part of a 
+						team who builds something magnificent, Rag is the place for you. Join us floaters 
+						in building the most amazing structures you have only dreamed of, and have a say 
+						in what SoC should build this year.
+					</figcaption>
+				</div>
+			</figure>
+			<figure>
+				<div style="background-image:url(http://freshmen.nuscomputing.com/img/rag/rag1.jpg)" class="img"></div>
+				<div class="caption">
+					<figcaption>
+						Rag is not just about choosing to be in Float, Dance, Makeup or Costumes. 
+						Our Raggers come together to put up their very best performance regardless of 
+						which team they belong to! Here’s our head makeup artist last year painting a 
+						happy dancer’s face before the big day.
+					</figcaption>
+				</div>
+			</figure>
+			<figure>
+				<div style="background-image:url(http://freshmen.nuscomputing.com/img/rag/rag2.jpg)" class="img"></div>
+				<div class="caption right">
+					<figcaption>
+						You don’t have to be a girl to dance. We have plenty of guys who join Rag as dancers 
+						with NO prior experience. Be assured that we have the most talented and patient 
+						choreographers waiting to introduce you to the swag that is dance. Girls, we 
+						want you too!
+					</figcaption>
+				</div>
+			</figure>
+			<figure>
+				<div style="background-image:url(http://freshmen.nuscomputing.com/img/rag/rag5.jpg)" class="img"></div>
+				<div class="caption">
+					<figcaption>
+						In light of the spirit of Rag, our costumes over the past few years have always 
+						been hand-made by our very own Costumes team. If you are creative and want to 
+						do a little handiwork, join our Costumes team in dressing up our dancers for 
+						the big day!
+					</figcaption>
+				</div>
+			</figure>
+			<figure>
+				<div style="background-image:url(http://freshmen.nuscomputing.com/img/flag/flag1.jpg)" class="img"></div>
+				<div class="caption">
+					<figcaption>
+						Rag and Flag isn’t complete without our Flag component. This year, we will be 
+						planning a lineup of activities and games for our residents at Fernvale Gardens School.  
+						Join us in this meaningful day as we give back to the society. We will also be 
+						having a Flag day in August for you to do a little something for our beneficiary.
+					</figcaption>
+				</div>
+			</figure>
+			<figure>
+				<div style="background-image:url(http://freshmen.nuscomputing.com/img/rag/rag6.jpg)" class="img"></div>
+				<div class="caption">
+					<figcaption>
+						A very last group photo at Rag, but definitely not the last of our friendships. 
+						After a summer of having supper together, training, and more supper, be sure 
+						that you will make friendships that last beyond your university life. Be part 
+						of our Rag family today!
+					</figcaption>
+				</div>
+			</figure>
+		</section>
+		<footer class="global">
+			<div class="bottom-call">
+				<p class="block-text text-center">Stay tuned for more information!</p>
+				<div class="call dark"><a href="https://www.facebook.com/SoCFOP/" target="_blank" class="btn btn-primary btn-lg">Connect With Us on Facebook</a><a href="https://mysurvey.nus.edu.sg/EFM/se.ashx?s=54CCD14B2078EA2B" target="_blank" class="btn btn-primary btn-lg">Join Our Mailing List</a></div>
+			</div>
+			<p class="icons"><a href="mailto:fop@nuscomputing.com"><i aria-hidden="true" class="fa fa-envelope"></i><span class="label">Email Us</span></a><a href="https://www.youtube.com/channel/UCu-OQvWHAVHtZZ_1U5ODhAg"><i aria-hidden="true" class="fa fa-youtube"></i><span class="label">Our YouTube Channel</span></a><a href="https://www.facebook.com/SoCFOP/"><i aria-hidden="true" class="fa fa-facebook-official"></i><span class="label">Follow us on Facebook</span></a><a href="https://github.com/ZhangYiJiang/fop-website-2016"><i aria-hidden="true" class="fa fa-github"></i><span class="label">Fork this on GitHub</span></a></p>
+			<p class="copyright">A project by <a href="http://nuscomputing.com">NUS Computing</a></p>
+		</footer>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<script src="http://freshmen.nuscomputing.com/js/app.js"></script>
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q || []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			 
+			ga('create', 'UA-74969540-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+	</body>
+</html>

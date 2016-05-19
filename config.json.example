@@ -1,5 +1,6 @@
 {
   "paths": {
+    "static": "./assets/",
     "styles": "./assets/styles/", 
     "templates": "./assets/jade/", 
     "etc": "./assets/etc/"
@@ -14,7 +15,7 @@
       "locals": {
         "baseUrl": "http://localhost:3000/"
       },
-      "output": "./public-build/"
+      "output": "./local-build/"
     },
 
     "staging": {
@@ -27,7 +28,7 @@
       "reload": false,
       "minify": true,
       "sourcemaps": true,
-      "urlRewrite": true
+      "urlRewrite": false
     },
     
     "production": {
@@ -35,7 +36,7 @@
         "baseUrl": "http://freshmen.nuscomputing.com/"
       }, 
       
-      "output": "./production-build/",
+      "output": "./public/",
       
       "reload": false,
       "minify": true,
