@@ -198,8 +198,7 @@ body.index {
       color: #999;
     }
     
-    h3, .event strong {
-      width: 100px;
+    h3, .tl-date {
       text-align: right;
     }
     
@@ -210,17 +209,52 @@ body.index {
       color: $brand-primary;
       border-bottom: 3px solid;
       margin-top: 32px;
+      width: 100px;
     }
-    
-    .event {
+
+    ul {
       font-size: 20px;
-      
-      strong {
-        margin-right: 12px;
-        display: inline-block;
-      }
-      
+      @include list-unstyled;
+    }
+
+    li {
+      display: flex;
+      margin: 12px 0;
     }
     
+    .tl-date, h4, h4 a {
+      line-height: inherit;
+    }
+
+    h4 {
+      margin: 0 0 6px 0;
+      font-size: inherit;
+      font-family: $font-family-sans-serif;
+    }
+
+    .tl-date {
+      flex: 0 0 100px;
+      margin-right: 12px;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: $font-size-base;
+    }
+
+    @media (max-width: 500px) {
+      li {
+        flex-wrap: wrap
+      }
+
+      .tl-date {
+        text-align: left;
+        flex: 0 auto;
+        margin-right: 6px;
+      }
+
+      .tl-desc {
+      }
+    }
   }
 }

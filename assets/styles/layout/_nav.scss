@@ -1,6 +1,8 @@
 nav.global, footer.global {
-  ul, ol {
-    list-style: none;
+  ul {
+    @include list-unstyled; 
+    margin: 0;
+    padding: 0;
   }
 }
 
@@ -22,8 +24,6 @@ nav.global {
   
   ul.nav {
     display: flex;
-    padding: 0;
-    margin: 0;
     
     li {
       flex: 1 1 auto;

@@ -87,44 +87,98 @@ block main
   
   .timeline-container
     .timeline
-      header
-        h2 Timeline of events
+      h2 Timeline of events
       
       h3 June
-      p.event
-        strong 11-14 
-        | Freshmen Social Camp (FSC)
-      p.event
-        strong 17 
-        | RAG Induction
+      
+      ul
+        li 
+          .tl-date 11-14 
+          .tl-desc Freshmen Social Camp (FSC)
+        
+        li
+          .tl-date 17 
+          .tl-desc RAG Induction
       
       h3 July
-      p.event
-        strong 11, 12, 14 
-        | Programming Refresher Workshop for Poly students
-      p.event
-        strong 13 
-        | Qualifying English Test (QET)
-      p.event
-        strong 18 
-        | Academic Day
-      p.event
-        strong 19, 20, 22  
-        | Introduction to Programming Workshop for JC students
-      p.event
-        strong 24 - 27 
-        | Freshmen Orientation Week (FOW)
+      
+      ul
+        li
+          .tl-date 11, 12, 14 
+          .tl-desc
+            h4: a(href='http://www.comp.nus.edu.sg/programmes/ug/fpw/refresher/',target='_blank')
+              | Programming Refresher Workshop for Poly students
+            p 
+              | This problem-based refresher workshop will guide participants through 
+              | several problem-solving exercises which are commonly covered in CS1010 
+              | (or its equivalent). Programming skills covered include: array manipulation, 
+              | iterations, recursion, sorting and searching. Corresponding problem-solving 
+              | skills covered include: manipulation of both collections of homogeneous 
+              | data and numerical data through repetitive process and divide-and-conquer 
+              | method.
+        li
+          .tl-date 13 
+          .tl-desc
+            h4: a(href='http://www.nus.edu.sg/celc/programmes/qet.php',target='_blank') 
+              | Qualifying English Test (QET)
+            p 
+              | The QET is an English Language test set by the Centre for English Language Communication. 
+              | It must be taken by students who do not possess the necessary English Language 
+              | qualifications when they enter the university.
+        
+        li
+          .tl-date 18 
+          .tl-desc Academic Day
+        
+        li
+          .tl-date 19, 20, 22  
+          .tl-desc
+            h4: a(href='http://www.comp.nus.edu.sg/programmes/ug/fpw/ipw/',target='_blank') 
+              | Introduction to Programming Workshop for JC students
+            p
+              | This workshop is designed to answer questions like “What is programming? Is programming 
+              | hard?” It is therefore targeted at students who have #[strong never] programmed before 
+              | and have absolutely no idea what programming is.
+            p
+              | The workshop will introduce you to the basic tenets of algorithmic thinking that 
+              | provides a systematic way of solving problems. Thereafter, you will progress 
+              | to learn basic constructs of C, Java and Python so that you can design 
+              | and write simple programs. CS and CEG students will learn C. IS and BZA 
+              | students will learn Java and Python respectively.
+            p
+              | The workshop adopts small group lectures and practical lab sessions as the 
+              | primary teaching modes. You will have plenty of hands-on opportunities to 
+              | write simple programming codes.
+        
+        li
+          .tl-date 24 - 27 
+          .tl-desc Freshmen Orientation Week (FOW)
       
       h3 August
-      p.event
-        strong 1 
-        | Freshmen Inauguration Ceremony (FIC)
-      p.event
-        strong 2 
-        | Flag Day
-      p.event
-        strong 6 
-        | RAG Day
-      p.event 
-        strong 12 
-        | Bash
+      
+      ul
+        li
+          .tl-date 1#[sup st]
+          .tl-desc 
+            h4: a(href='http://nus.edu.sg/osa/so/events/fic',target='_blank')
+              | Freshmen Inauguration Ceremony (FIC)
+            p
+              | The Freshmen Inauguration Ceremony (FIC) is an annual event attended by NUS Senior 
+              | Management, Administrators, Student Leaders and freshmen, with the aim of welcoming 
+              | the newly-matriculated freshmen into the University. The ceremony features The FIC 
+              | Musical, a light-hearted, tongue-in-cheek musical production which depicts the chronicles 
+              | of NUS students throughout their university life. The script is written by Shiv Tandan, 
+              | NUS Alumni, and narrated by two NUS students. They will be accompanied by a wide 
+              | genre of performing groups on campus, showcasing NUS talents and campus vibrancy.
+        
+        li
+          .tl-date 2 
+          .tl-desc Flag Day
+        
+        li
+          .tl-date 6 
+          .tl-desc RAG Day
+        
+        li
+          .tl-date 12 
+          .tl-desc Bash
