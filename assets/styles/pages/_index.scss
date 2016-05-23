@@ -65,6 +65,7 @@ body.index {
     .project-row {
       display: flex;
       flex-direction: row;
+      flex: 1 1 auto;
     }
 
     @media (max-width: $screen-lg) {
