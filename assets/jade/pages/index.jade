@@ -87,8 +87,11 @@ block main
   
   .timeline-container
     .timeline
-      h2 Timeline of events
-      
+      header
+        h2 Timeline of events
+        a.btn.btn-primary(href='https://calendar.google.com/calendar/embed?src=mpenqpun7rjhup57d2cscg0i88%40group.calendar.google.com&ctz=Asia/Singapore',target='_blank')
+          | View in Google Calendar 
+
       h3 June
       
       ul
@@ -103,24 +106,55 @@ block main
       h3 July
       
       ul
+        li 
+          .tl-date 8
+            span.time 1000 - 1200
+          .tl-desc
+            h4: a(href='http://ww1.math.nus.edu.sg/undergrad.aspx?f=stu-1301test',target='_blank') 
+              | MA1301 Introductory Mathematics Proficiency Test
+            p
+              strong Sign up deadline: 
+              | 4 July - 1700 hrs, Office of Undergraduate Studies
+
         li
           .tl-date 11, 12, 14 
+            span.time 0900 - 1700
+              br
+              | LT15 at AS6
           .tl-desc
             h4: a(href='http://www.comp.nus.edu.sg/programmes/ug/fpw/refresher/',target='_blank')
               | Programming Refresher Workshop for Poly students
+            p
+              strong Sign up deadline: 
+              | 10 June
             p 
               | This problem-based refresher workshop will guide participants through 
-              | several problem-solving exercises which are commonly covered in CS1010 
+              | several problem-solving exercises which are commonly covered in 
+              | #[a.module(title='Programming Methodology',href='https://nusmods.com/modules/CS1010') CS1010]  
               | (or its equivalent). Programming skills covered include: array manipulation, 
               | iterations, recursion, sorting and searching. Corresponding problem-solving 
               | skills covered include: manipulation of both collections of homogeneous 
               | data and numerical data through repetitive process and divide-and-conquer 
               | method.
+        li 
+          .tl-date 12
+            span.time 1400 - 1600
+          .tl-desc
+            h4: a(href='http://www.comp.nus.edu.sg/programmes/ug/exemptions/a-levels/',target='_blank')
+              | CS1010 Placement Tests for Polytechnic Diploma and 'A' level holders  
+            p
+              strong Sign up deadline: 
+              | 4 July - 1700 hrs, Office of Undergraduate Studies
+
         li
           .tl-date 13 
+            span.time 0930 - 1045
           .tl-desc
             h4: a(href='http://www.nus.edu.sg/celc/programmes/qet.php',target='_blank') 
               | Qualifying English Test (QET)
+            p
+              strong Sign up deadline: 
+              | 5 July
             p 
               | The QET is an English Language test set by the Centre for English Language Communication. 
               | It must be taken by students who do not possess the necessary English Language 
@@ -128,52 +162,80 @@ block main
         
         li
           .tl-date 18 
-          .tl-desc Academic Day
+            span.time 0930 - 1630
+              br
+              a(href='https://www.google.com.sg/maps/place/i3+Auditorium/@1.2926939,103.7733481,17z/data=!3m1!4b1!4m5!3m4!1s0x31da1a558be07db5:0x19fbcf7c5d63f179!8m2!3d1.2926939!4d103.7755368?hl=en',target='_blank') 
+                | i3 Auditorium  
+          .tl-desc 
+            h4: a(href='http://www.comp.nus.edu.sg/programmes/ug/useful-links/',target='_blank')
+              | Faculty and Department Briefing
+            p
+              | Faculty Briefing (CS/IS/Business Analytics/Information Security courses) and 
+              | #[abbr(title='Centralised Online Undergraduates Registration System') CORS] 
+              | Briefing in the morning, and CS Department Programme Briefing followed by 
+              | about your 1#[sup st] programming course in CS1010 or CS1101S in the afternoon.
         
         li
-          .tl-date 19, 20, 22  
+          .tl-date 
+            | 19, 20, 22
+            span.time 0900 - 1700
+              br
+              | Seminar Room 1 at COM1
           .tl-desc
             h4: a(href='http://www.comp.nus.edu.sg/programmes/ug/fpw/ipw/',target='_blank') 
               | Introduction to Programming Workshop for JC students
             p
-              | This workshop is designed to answer questions like “What is programming? Is programming 
-              | hard?” It is therefore targeted at students who have #[strong never] programmed before 
+              strong Sign up deadline: 
+              | 10 June
+            p
+              | A workshop designed to answer questions like “What is programming? Is programming 
+              | hard?” It is targeted at students who have #[strong never] programmed before 
               | and have absolutely no idea what programming is.
-            p
-              | The workshop will introduce you to the basic tenets of algorithmic thinking that 
-              | provides a systematic way of solving problems. Thereafter, you will progress 
-              | to learn basic constructs of C, Java and Python so that you can design 
-              | and write simple programs. CS and CEG students will learn C. IS and BZA 
-              | students will learn Java and Python respectively.
-            p
-              | The workshop adopts small group lectures and practical lab sessions as the 
-              | primary teaching modes. You will have plenty of hands-on opportunities to 
-              | write simple programming codes.
-        
+            
         li
           .tl-date 24 - 27 
           .tl-desc Freshmen Orientation Week (FOW)
+        
+        li
+          .tl-date 28 - 29
+          .tl-desc 
+            h4 
+              abbr(title='Centralised Online Undergraduates Registration System') CORS
+              |  Bidding Round 1C
+        
+        li 
+          .tl-date 29
+          .tl-desc Academic Day 
       
       h3 August
       
       ul
         li
           .tl-date 1#[sup st]
+            span.time 
+              a(href='https://www.google.com.sg/maps/place/University+Cultural+Centre/@1.3015111,103.7696919,17z/data=!3m1!4b1!4m5!3m4!1s0x31da1af6fa0e402f:0xd7b19dcc6f0f4ca7!8m2!3d1.3015111!4d103.7718806?hl=en',target='_blank') 
+                | University Cultural Centre
           .tl-desc 
             h4: a(href='http://nus.edu.sg/osa/so/events/fic',target='_blank')
               | Freshmen Inauguration Ceremony (FIC)
             p
-              | The Freshmen Inauguration Ceremony (FIC) is an annual event attended by NUS Senior 
+              | An annual event attended by NUS Senior 
               | Management, Administrators, Student Leaders and freshmen, with the aim of welcoming 
               | the newly-matriculated freshmen into the University. The ceremony features The FIC 
               | Musical, a light-hearted, tongue-in-cheek musical production which depicts the chronicles 
-              | of NUS students throughout their university life. The script is written by Shiv Tandan, 
-              | NUS Alumni, and narrated by two NUS students. They will be accompanied by a wide 
-              | genre of performing groups on campus, showcasing NUS talents and campus vibrancy.
-        
+              | of NUS students throughout their university life. 
+            
         li
           .tl-date 2 
           .tl-desc Flag Day
+        
+        li
+          .tl-date 3
+            span.time 1415 - 1730
+          .tl-desc
+            h4 Dean’s Welcome to All Freshmen
+            p 
+              | COM1 Level 2 Room 6 (Seminar Room 1) & COM1 Level 2 Foyer
         
         li
           .tl-date 6 

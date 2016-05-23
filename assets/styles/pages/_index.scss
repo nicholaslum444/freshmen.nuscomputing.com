@@ -194,6 +194,17 @@ body.index {
     margin: 0 auto;
     padding: 20px;
     
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      
+      a.btn {
+        margin-top: 12px;
+      }
+    }
+    
     h2 {
       color: #999;
     }
@@ -227,7 +238,7 @@ body.index {
     }
 
     h4 {
-      margin: 0 0 6px 0;
+      margin: 0 0 3px 0;
       font-size: inherit;
       font-family: $font-family-sans-serif;
     }
@@ -236,6 +247,14 @@ body.index {
       flex: 0 0 100px;
       margin-right: 12px;
       font-weight: bold;
+      
+      .time {
+        font-size: 16px;
+        display: block;
+        margin-top: 3px;
+        color: #666;
+        opacity: .6;
+      }
     }
 
     p {
@@ -251,6 +270,11 @@ body.index {
         text-align: left;
         flex: 0 auto;
         margin-right: 6px;
+        
+        .time {
+          display: inline;
+          padding-left: 6px;
+        }
       }
 
       .tl-desc {
