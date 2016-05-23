@@ -48,21 +48,10 @@ footer.global {
       }
 
       &:hover {
-        .fa-facebook-official {
-          color: #3b5998;
-        }
-
-        .fa-youtube {
-          color: #e52d27;
-        }
-
-        .fa-envelope {
-          color: $brand-secondary;
-        }
-
-        .fa-github {
-          color: #999;
-        }
+        .fa-facebook-official { color: #3b5998; }
+        .fa-youtube { color: #e52d27; }
+        .fa-envelope { color: $brand-secondary; }
+        .fa-github { color: #999; }
         
         .label {
           top: -30px;
@@ -73,6 +62,11 @@ footer.global {
   }
   
   .copyright {
+    color: #999; 
+    
+    p {
+      margin: 0;
+    }
   }
 }
 

@@ -81,10 +81,18 @@ html
         a(href='https://github.com/NUSComputingDev/freshmen.nuscomputing.com')
           i.fa.fa-github(aria-hidden='true')
           span.label Fork this on GitHub
-      p.copyright
-        | A project by 
-        a(href='http://nuscomputing.com') NUS Computing
       
+      .copyright
+        p
+          | A project by 
+          a(href='http://nuscomputing.com') NUS Computing
+          | . Last updated 
+          time(title=moment().format()) #{moment().format('MMM D YYYY, h:mm:ssa')}. 
+        p 
+          | Site designed and coded by 
+          a(href='https://github.com/ZhangYiJiang/') Zhang Yi Jiang. 
+          |  Video editing and logo design by Wang Xien Dong.  
+
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js')
     script(src=baseUrl + 'js/app.js')
     if typeof analytics !== "undefined"

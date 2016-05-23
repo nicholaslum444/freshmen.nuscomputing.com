@@ -1,18 +1,19 @@
 "use strict";
 
-let path = require('path');
+const path = require('path');
 
-let gulp = require('gulp');
-let gulpif = require('gulp-if');
-let sass = require('gulp-sass');
-let jade = require('gulp-jade');
-let newer = require('gulp-newer');
-let sourcemaps = require('gulp-sourcemaps');
+const gulp = require('gulp');
+const gulpif = require('gulp-if');
+const sass = require('gulp-sass');
+const jade = require('gulp-jade');
+const newer = require('gulp-newer');
+const sourcemaps = require('gulp-sourcemaps');
 
-let browserSync = require('browser-sync');
-let _ = require('lodash');
-let reload = browserSync.reload;
-let argv = require('yargs').argv;
+const browserSync = require('browser-sync');
+const _ = require('lodash');
+const moment = require('moment');
+const reload = browserSync.reload;
+const argv = require('yargs').argv;
 
 let config = require('./config.json');
 let defaults = {
@@ -36,7 +37,9 @@ let jadeUtils = {
       path += '.html';
     
     return env.locals.baseUrl + path; 
-  }
+  }, 
+  
+  moment
 };
 
 function staticPaths() {
@@ -54,7 +57,7 @@ function copyAssets(dest) {
 }
 
 function buildSass(out, minify, reloadBS, useSourcemap) {
-  let outputStyle = minify ? 'compressed' : 'nested';
+  const outputStyle = minify ? 'compressed' : 'nested';
   
   return gulp.src(config.paths.styles + 'app.scss')
     .pipe(gulpif(useSourcemap, sourcemaps.init()))
