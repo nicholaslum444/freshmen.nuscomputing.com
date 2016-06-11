@@ -17,7 +17,7 @@ nav.global {
   
   transition: all .3s;
   
-  @media (max-width: 500px) {
+  @media (max-width: $small-nav-width) {
     transform: scale(.75);
     transform-origin: 0 0;
   }
@@ -154,7 +154,7 @@ nav.global {
       }
     }
     
-    @media (max-width: 500px) {
+    @media (max-width: $small-nav-width) {
       text-align: center;
       transform: scale(1);
 
@@ -230,7 +230,7 @@ nav.global {
       bottom: 2px;
     }
 
-    @media (min-width: 500px) {
+    @media (min-width: $small-nav-width) {
       &:hover {
         span.letters {
           width: 160px;
