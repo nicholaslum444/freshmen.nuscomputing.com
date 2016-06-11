@@ -50,7 +50,7 @@ let jadeUtils = {
       const name = photo.split(/\s*\|\s*/, 1)[0].trim();
       
       return {
-        name,
+        name: name.replace(/\d+\s*/, ''),
         file: env.locals.baseUrl + path + '/' + file, 
         job: _.trim(photo.substring(name.length), ' |'), 
       };
