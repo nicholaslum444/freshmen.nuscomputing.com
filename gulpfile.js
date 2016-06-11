@@ -14,6 +14,7 @@ const _ = require('lodash');
 const moment = require('moment');
 const reload = browserSync.reload;
 const argv = require('yargs').argv;
+const fs = require('fs');
 
 let config = require('./config.json');
 let defaults = {
@@ -39,7 +40,22 @@ let jadeUtils = {
     return env.locals.baseUrl + path; 
   }, 
   
-  moment
+  moment, 
+  
+  faces: (path) => {
+    const dir = config.paths.static + '/' + path;
+    
+    return fs.readdirSync(dir).map((file) => {
+      const photo = file.split('.')[0]; 
+      const name = photo.split(/\s*-\s*/, 1)[0];
+      
+      return {
+        name,
+        file: env.locals.baseUrl + path + '/' + file, 
+        job: photo.substring(name.length+1).trim(), 
+      };
+    });
+  },
 };
 
 function staticPaths() {

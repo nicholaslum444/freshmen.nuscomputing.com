@@ -2,6 +2,7 @@ extends ../layout/events
 
 prepend vars
   - var event = 'Freshman Social Camp'
+  - var eventShort = 'fsc'
 
 block heading
   p.aspect
@@ -24,6 +25,7 @@ block main
       | It was the best camp among all the camps that I have gone for. Meeting my seniors and 
       | new friends and having fun together.
     figcaption Chase Tiong, Year 1 CS student
+  
   section.gallery
     figure
       div.img(style={ 'background-image': 'url(' + baseUrl + 'img/fsc/fsc1.jpg' + ')' })
@@ -70,5 +72,12 @@ block main
         figcaption
           | A huge camp photo at Sentosa, after a fun day of beach games!
 
-    
-    
+    section.people 
+      h2 Proudly brought to you by these awesome people 
+      
+      ul.faces
+        each photo in faces('img/fsc/people')
+          li
+            img(src=photo.file, alt='')
+            p.name= photo.name
+            p.job= photo.job

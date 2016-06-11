@@ -86,7 +86,7 @@ body.event {
       }
     }
     
-    &.rag-flag {
+    &.rag {
       background-image: url('#{$image-base}/rag/cover.jpg');
       .aspect span { background: $brand-rag; }
     }
@@ -98,12 +98,12 @@ body.event {
       .aspect span { background: $brand-rag; }
     }
     
-    &.freshman-social-camp {
+    &.fsc {
       background-image: url('#{$image-base}/fsc/cover.jpg');
       .aspect span { background: $brand-fsc }
     }
     
-    &.freshman-orientation-week {
+    &.fow {
       flex-direction: row-reverse;
       .heading { text-align: right }
       background-image: url('#{$image-base}/fow/cover.jpg');
@@ -163,5 +163,90 @@ body.event {
         height: 600px;
       }
     }
+  }
+  
+  .people {
+    background: url('#{$image-base}/symphony.png');
+    padding: 44px 10px 22px;
+    border-style: solid; 
+    border-width: 24px 0; 
+    
+    h2 {
+      font-family: $font-family-serif;
+      font-style: italic;
+      font-size: 36px;
+      text-align: center;
+      text-shadow: 0 1px 0 rgba(#000, .2);
+
+      max-width: 540px;
+      margin: 0 auto 48px;
+    }
+  }
+
+  ul.faces {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+
+    li {
+      opacity: .8;
+      transition: opacity .3s;
+      width: 160px;
+      text-align: center;
+      margin: 6px 10px;
+  
+      img {
+        display: block;
+        width: 100%;
+        margin-bottom: 8px;
+        border: 2px solid;
+        border-radius: 50%;
+        transition: filter .3s;
+        
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
+      }
+  
+      p {
+        margin: 0 0 5px 0;
+        line-height: 1.2;
+        transition: color .3s;
+  
+        &.name {
+          font-weight: bold;
+        }
+  
+        &.job {
+          color: #999;
+          font-size: 13px;
+        }
+      }
+  
+      &:hover {
+        opacity: 1;
+  
+        img {
+          -webkit-filter: grayscale(0);
+          filter: grayscale(0);
+        }
+  
+        p {
+          &.name {
+            color: $brand-primary;
+          }
+  
+          &.job {
+            color: #444;
+          }
+        }
+      }
+    }
+  }
+  
+  &.event-fsc .people {
+    border-color: $brand-fsc;
+    h2 { color: $brand-fsc; }
+    img { border-color: $brand-fsc; }
   }
 }
