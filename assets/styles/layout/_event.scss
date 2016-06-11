@@ -74,7 +74,7 @@ body.event {
     @media (max-width: 850px) {
       display: block;
       height: auto;
-      padding: 250px 20px 0;
+      padding: 300px 20px 0;
 
       .description {
         width: auto;
@@ -184,13 +184,15 @@ body.event {
     }
     
     .credit {
-      position: absolute;
       font-size: 12px;
       padding: 6px;
       margin: 0;
+      
+      position: absolute;
       bottom: 0;
       right: 0;
       left: 0;
+      
       text-align: right;
       opacity: .6;
       transition: opacity .3s;
@@ -202,10 +204,11 @@ body.event {
   }
 
   ul.faces {
+    @include list-unstyled;
+    
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    list-style: none;
     
     &.directors li {
       width: 160px;
