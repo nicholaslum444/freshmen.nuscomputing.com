@@ -206,14 +206,22 @@ body.event {
     flex-wrap: wrap;
     justify-content: center;
     list-style: none;
+    
+    &.directors li {
+      width: 160px;
+    }
+    
+    &.plebs li {
+      width: 100px;
+    }
 
     li {
       opacity: .8;
       transition: opacity .3s;
-      width: 160px;
       text-align: center;
       margin: 6px 10px;
-  
+      
+
       img {
         display: block;
         width: 100%;

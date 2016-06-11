@@ -73,14 +73,24 @@ block main
           | A huge camp photo at Sentosa, after a fun day of beach games!
 
     section.people 
-      h2 Proudly brought to you by these awesome people 
+      h2 Proudly brought to you by these awesome people
       
-      ul.faces
-        each photo in faces('img/fsc/people')
+      -var people = faces('img/fsc/people', true)
+      -var heads = people[0], plebs = people[1]
+        
+      ul.faces.directors 
+        each person in heads
           li
-            img(src=photo.file, alt='')
-            p.name= photo.name
-            p.job= photo.job
+            img(src=person.file, alt='')
+            p.name= person.name
+            p.job= person.job
+      
+      ul.faces.plebs
+        each person in plebs
+          li
+            img(src=person.file, alt='')
+            p.name= person.name
+            p.job= person.job
       
       p.credit
         | Background pattern 

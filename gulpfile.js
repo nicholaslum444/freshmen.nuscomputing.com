@@ -42,19 +42,33 @@ let jadeUtils = {
   
   moment, 
   
-  faces: (path) => {
+  faces: (path, split) => {
     const dir = config.paths.static + '/' + path;
     
-    return fs.readdirSync(dir).map((file) => {
+    const people = fs.readdirSync(dir).map((file) => {
       const photo = file.split('.')[0]; 
-      const name = photo.split(/\s*-\s*/, 1)[0];
+      const name = photo.split(/\s*\|\s*/, 1)[0].trim();
       
       return {
         name,
         file: env.locals.baseUrl + path + '/' + file, 
-        job: photo.substring(name.length+1).trim(), 
+        job: _.trim(photo.substring(name.length), ' |'), 
       };
     });
+    
+    if (!split) {
+      return people; 
+    }
+    
+    const groups = _.groupBy(people, (person) => {
+      // Returns 0 for people who are heads or directors and 1 everyone else 
+      return 1 - (person.job.includes('Head') || person.job.includes('Director'));
+    });
+
+    // Bin people by their jobs, then order them by the number of people in each bin
+    groups[1] = _.flatten(_.sortBy(_.groupBy(groups[1], 'job'), 'length'));
+
+    return groups;
   },
 };
 
