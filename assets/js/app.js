@@ -64,8 +64,11 @@ $('body').click(function(){
   $('.full-only').removeClass('active');
 });
 
-var videoBanner = $('.hero[data-video]');
+var videoBanner = $('.video-overlay');
+
 videoBanner.each(function () {
+  var $t = $(this); 
+  
   // Check connection speed and widow width 
   if (('connection' in window.navigator && 
       window.navigator.connection.type === 'cellular') ||
@@ -80,23 +83,49 @@ videoBanner.each(function () {
     return;
   }
   
-  video.src = videoBanner.data('video');
+  video.src = $t.data('video');
   video.controls = false; 
   video.loop = true;
   
   video.addEventListener('loadeddata', function() {
     // If video has enough data
     if (video.readyState > 3) {
-      videoBanner.find('.video-overlay')
-        .fadeTo(400, 1, function(){ 
-          videoBanner.append(video); 
-          video.play(); 
+      $t.fadeTo(400, 1, function(){ 
+          $t.after(video); 
+          video.play();
         })
         .fadeTo(400, .5);
     }
   });
+  
+  // Setup pause button
+  $t.find('button').click(function (evt) {
+    evt.preventDefault();
+    
+    // Check if video is playing 
+    if (video.currentTime > 0 && ! video.paused && ! video.ended) {
+      video.pause();
+      
+      $(this).find('.fa')
+        .removeClass('fa-pause')
+        .addClass('fa-play')
+        .end()
+      .find('span')
+        .text('Play'); 
+    } else {
+      video.play();
+
+      $(this).find('.fa')
+        .removeClass('fa-play')
+        .addClass('fa-pause')
+      .end()
+        .find('span')
+        .text('Pause');
+    }
+  }); 
 });
 
+// 9th May 2016, GMT-8 timezone 
 var signupDate = Date.UTC(2016, 4, 9, -8);
 
 if (signupDate > Date.now()) {

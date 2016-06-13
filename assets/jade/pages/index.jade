@@ -6,7 +6,7 @@ block vars
   - var description = 'NUS School of Computing Freshmen Orientation Projects presents Virtutem Quattor. Join us to experience a summer like never before!'; 
     
 block header
-  .hero(data-video=baseUrl + 'video/background.mp4')
+  .hero
     .content
       h1
         | Four Events.
@@ -17,7 +17,11 @@ block header
           | Connect With Us on Facebook
         a.btn.btn-primary.btn-lg.signup(href='http://tiny.cc/FOP2016',target='_blank')
           | Sign Up Now
-    .video-overlay
+    .video-overlay(data-video=baseUrl + 'video/background.mp4')
+      button(type='button').btn.btn-default
+        i.fa.fa-pause
+        | 
+        span Pause
 
 block main
   .block-text.intro

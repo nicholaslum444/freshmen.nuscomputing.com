@@ -36,6 +36,12 @@ body.index {
       left: 0;
       opacity: 0;
       background: #000;
+      
+      button {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
     }
     
     video {
