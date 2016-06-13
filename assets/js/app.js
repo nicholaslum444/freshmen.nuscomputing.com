@@ -36,6 +36,11 @@ _.throttle = function(func, wait, options) {
   };
 };
 
+_.padLeft = function(s, l, c) {
+  s = s.toString();
+  return Array(l - s.length + 1).join(c || "0") + s;
+};
+
 var nav = $('nav.global');
 $(window).scroll(_.throttle(function(){
   nav.toggleClass('full', $(window).scrollTop() > 0);
@@ -62,8 +67,8 @@ $('body').click(function(){
 var videoBanner = $('.hero[data-video]');
 videoBanner.each(function () {
   // Check connection speed and widow width 
-  if ('connection' in window.navigator && 
-      window.navigator.connection.type === 'cellular' ||
+  if (('connection' in window.navigator && 
+      window.navigator.connection.type === 'cellular') ||
       $(window).width() < 800)
   {
     return;
@@ -92,11 +97,6 @@ videoBanner.each(function () {
   });
 });
 
-function padLeft(s, l, c) {
-  s = s.toString();
-  return Array(l - s.length + 1).join(c || "0") + s;
-}
-
 var signupDate = Date.UTC(2016, 4, 9, -8);
 
 if (signupDate > Date.now()) {
@@ -107,7 +107,7 @@ if (signupDate > Date.now()) {
       s = Math.floor(diff % 60),
       m = Math.floor(diff / 60) % 60,
       h = Math.floor(diff / 3600),
-      timeString = [padLeft(h, 2), padLeft(m, 2), padLeft(s, 2)].join(':');
+      timeString = [_.padLeft(h, 2), _.padLeft(m, 2), _.padLeft(s, 2)].join(':');
 
     $('.signup').text('Sign Ups Open In ' + timeString);
   };
