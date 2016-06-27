@@ -26,49 +26,63 @@ let defaults = {
 
 let env = _.defaults(config.environments[config.env], defaults);
 
-
+// Defining the set of functions that are passed into the Jade template
 let jadeUtils = {
   slugify: (str) => {
     return str.toLowerCase()
       .replace(/[^\w\d]+/g, '-');
   }, 
   
-  url: (path) => {
+  url: (url) => {
     if (!env.urlRewrite)
-      path += '.html';
+      url += '.html';
     
-    return env.locals.baseUrl + path; 
+    return env.locals.baseUrl + url; 
   }, 
   
   moment, 
   
-  faces: (path, split) => {
-    const dir = config.paths.static + '/' + path;
+  faces: (photos, partitions) => {
+    const dir = path.join(config.paths.static, photos);
+    partitions = partitions || []; 
     
     const people = fs.readdirSync(dir).map((file) => {
+      // Each file name should be of the form: 
+      //      00 Soh Wei Hao | Project Director.jpg 
+      // where the first two digits are the optional ordering, and the 
+      // rest of the filename is the name followed by the person's job, 
+      // delimited by the pipe character, since that is not a character that 
+      // occurs frequently in names or job titles. 
       const photo = file.split('.')[0]; 
       const name = photo.split(/\s*\|\s*/, 1)[0].trim();
       
       return {
         name: name.replace(/\d+\s*/, ''),
-        file: env.locals.baseUrl + path + '/' + file, 
+        file: env.locals.baseUrl + photos + '/' + file, 
         job: _.trim(photo.substring(name.length), ' |'), 
       };
     });
     
-    if (!split) {
-      return people; 
-    }
+    let groups = [people]; 
     
-    const groups = _.groupBy(people, (person) => {
-      // Returns 0 for people who are heads or directors and 1 everyone else 
-      return 1 - (person.job.includes('Head') || person.job.includes('Director'));
+    partitions.forEach((search, i) => {
+      let splitted = _.partition(groups[i], (person) => {
+        return person.job.includes(search); 
+      }); 
+      
+      groups[i] = splitted[0];
+      groups[i+1] = splitted[1];
     });
-
-    // Bin people by their jobs, then order them by the number of people in each bin
-    groups[1] = _.flatten(_.sortBy(_.groupBy(groups[1], 'job'), 'length'));
-
-    return groups;
+    
+    groups = groups.map((group) => {
+      return _.chain(group)
+        .groupBy('job')
+        .sortBy('length')
+        .flatten()
+        .value(); 
+    }); 
+    
+    return partitions.length ? groups : groups[0]; 
   },
 };
 

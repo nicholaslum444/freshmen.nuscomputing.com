@@ -36,7 +36,7 @@ block main
       | seniors who will provide valuable advice to follow you through your University years. Join us
       | this summer for the best freshmen experience you’ll ever have!
 
-  .projects
+  section.projects
     .project-row
       a(href=url('fsc')).project.fsc
         p.aspect 
@@ -89,7 +89,7 @@ block main
             | Celebrate the end of Orientation with a blast! Join us 
             | to crown the next Mr and Ms SoC!
   
-  .timeline-container
+  section.timeline-container
     .timeline
       header
         h2 Timeline of events
@@ -248,3 +248,25 @@ block main
         li
           .tl-date 12 
           .tl-desc Bash
+      
+  
+  section.people
+    h2 Proudly brought to you by these awesome people
+    
+    -var people = faces('img/fop', ['Head'])
+    
+    ul.faces.directors
+      each person in people[0]
+        li
+          img(src=person.file, alt='')
+          p.name= person.name
+          p.job= person.job
+    
+    ul.faces.plebs
+      each person in people[1]
+        li
+          img(src=person.file, alt='')
+          p.name= person.name
+          p.job= person.job    
+    
+    include ../partials/credit

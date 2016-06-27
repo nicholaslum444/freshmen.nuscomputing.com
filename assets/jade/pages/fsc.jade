@@ -75,27 +75,20 @@ block main
     section.people 
       h2 Proudly brought to you by these awesome people
       
-      -var people = faces('img/fsc/people', true)
-      -var heads = people[0], plebs = people[1]
+      -var people = faces('img/fsc/people', ['Director', 'Head'])
         
       ul.faces.directors 
-        each person in heads
+        each person in people[0].concat(people[1])
           li
             img(src=person.file, alt='')
             p.name= person.name
             p.job= person.job
       
       ul.faces.plebs
-        each person in plebs
+        each person in people[2]
           li
             img(src=person.file, alt='')
             p.name= person.name
             p.job= person.job
       
-      p.credit
-        | Background pattern 
-        a(href='http://subtlepatterns.com/symphony/') Symphony
-        |  from 
-        a(href='http://subtlepatterns.com/') subtlepatterns.com
-        |  used under 
-        a(href='http://creativecommons.org/licenses/by-sa/3.0/') CC BY-SA 3.0
+      include ../partials/credit

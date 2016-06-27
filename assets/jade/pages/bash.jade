@@ -52,5 +52,26 @@ block main
           | After the crowning of Mr and Miss SoC, the event will have officially ended. 
           | But that is not the end of the night - party away with your fellow 
           | coursemates and seniors at the after party!
+      
+    section.people
+      h2 Proudly brought to you by these awesome people
+
+      -var people = faces('img/bash/people', ['Director'])
+
+      ul.faces.directors
+        each person in people[0]
+          li
+            img(src=person.file, alt='')
+            p.name= person.name
+            p.job= person.job
+      
+      ul.faces.plebs
+        each person in people[1]
+          li
+            img(src=person.file, alt='')
+            p.name= person.name
+            p.job= person.job
+
+      include ../partials/credit
     
 
